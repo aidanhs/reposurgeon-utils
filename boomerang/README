@@ -1,0 +1,18 @@
+# Performed with reposurgeon 2.40
+
+# Git repo cleaning gets rid of large binary files that never should've
+# been committed in the first place. We do lose some important stuff here though
+# (like compiled working executables) so the original svn repo is important.
+
+# Get the repo fresh from SF SVN
+make boomerang-mirror
+
+# Work around SF svn url oddity
+ln -s code-mirror boomerang-mirror
+
+# Make git repo
+make
+
+# Clean the repo
+cd boomerang-git
+../cleangitrepo.sh
