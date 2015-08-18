@@ -32,11 +32,12 @@ else:
             objs.add(obj)
 
             if path in deets:
-                deets[path] = deets[path] + 1
+                sumsize, count = deets[path]
+                deets[path] = (sumsize + size, count + 1)
             else:
-                deets[path] = 1
+                deets[path] = (size, 1)
 
     bigfiles = sorted(deets.items(), key=lambda x: x[1], reverse=True)
 
-    for f in bigfiles:
-        print "%s %s" % (f[0], str(f[1]))
+    for path, (sumsize, count) in bigfiles:
+        print "%s %.2fM in %s commits" % (path, float(sumsize)/1024/1024, count)
