@@ -26,8 +26,12 @@ else:
             size = int(size)
 
             if obj in objs:
-                continue
-            objs.add(obj)
+                # Don't double count identical objects. This may mean we log out
+                # a number of supposedly zero-size objects where the size is
+                # counted when the file was under another path, but oh well.
+                size = 0
+            else:
+                objs.add(obj)
 
             if path in deets:
                 sumsize, count, rev = deets[path]
