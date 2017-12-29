@@ -18,14 +18,12 @@ else:
         for f in files:
             if f == "":
                 continue
-            splitdata = f.split()
+            _mode, _type, obj, size_and_path = f.split(' ', 3)
+            size, path = size_and_path.split('\t', 1)
             # If no size
-            if splitdata[3] == "-":
+            if size == "-":
                 continue
-
-            obj = splitdata[2]
-            size = int(splitdata[3])
-            path = splitdata[4]
+            size = int(size)
 
             if obj in objs:
                 continue
