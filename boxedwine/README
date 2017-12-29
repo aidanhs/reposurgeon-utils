@@ -1,0 +1,16 @@
+# Performed with reposurgeon 3.43
+
+# Git repo cleaning gets rid of large binary files that never should've
+# been committed in the first place, as well as some branches we
+# probably don't care about. Some care is taken to try and keep the repo
+# history in a state that will work, but it's not actully tested.
+
+# Get the repo fresh from SF SVN
+make boxedwine-mirror
+
+# Make git repo
+make
+
+# Clean the repo
+cd boxedwine-git
+../cleangitrepo.sh
